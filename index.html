@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Temperature Converter</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f8ff;
+            padding: 30px;
+            text-align: center;
+        }
+        h2 {
+            color: #333;
+        }
+        input, select, button {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #007acc;
+        }
+    </style>
+</head>
+<body>
+    <h2>🌡️ Temperature Converter</h2>
+    <input type="number" id="temp" placeholder="Enter temperature">
+    <select id="unit">
+        <option value="C">Celsius</option>
+        <option value="F">Fahrenheit</option>
+        <option value="K">Kelvin</option>
+    </select>
+    <br>
+    <button onclick="convertTemp()">Convert</button>
+    <p id="result"></p>
+
+    <script>
+        function convertTemp() {
+            let temp = parseFloat(document.getElementById("temp").value);
+            let unit = document.getElementById("unit").value;
+            let result = "";
+
+            if (unit === "C") {
+                result = `Fahrenheit: ${(temp * 9/5 + 32).toFixed(2)} °F<br>Kelvin: ${(temp + 273.15).toFixed(2)} K`;
+            } else if (unit === "F") {
+                result = `Celsius: ${((temp - 32) * 5/9).toFixed(2)} °C<br>Kelvin: ${(((temp - 32) * 5/9) + 273.15).toFixed(2)} K`;
+            } else if (unit === "K") {
+                result = `Celsius: ${(temp - 273.15).toFixed(2)} °C<br>Fahrenheit: ${((temp - 273.15) * 9/5 + 32).toFixed(2)} °F`;
+            }
+
+            document.getElementById("result").innerHTML = result;
+        }
+    </script>
+</body>
+</html>
